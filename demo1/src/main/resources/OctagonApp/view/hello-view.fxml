@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.stage.*?>
+
+<Stage fx:id="mainStage" height="910.0" minHeight="910.0" minWidth="1600.0" width="1600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="OctagonApp.controller.OctagonController">
+    <scene>
+        <Scene fx:id="mainScene" onKeyPressed="#setActionOnKey">
+            <SplitPane fx:id="rootPane" dividerPositions="0.15030060120240482" prefHeight="800" prefWidth="1000.0">
+            <items>
+               <Pane prefHeight="100.0" prefWidth="100.0">
+                  <children>
+                     <Label fx:id="statisticsLabel" layoutX="10.0" layoutY="223.0" prefHeight="140.0" prefWidth="127.0" text="StaticsLabel" />
+                     <Label fx:id="timeLabel" layoutX="14.0" layoutY="14.0" text="TimeLabel" />
+                  </children>
+               </Pane>
+               <Pane fx:id="imagePane" prefHeight="200.0" prefWidth="200.0" />
+            </items></SplitPane>
+        </Scene>
+    </scene>
+</Stage>
