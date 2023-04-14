@@ -22,7 +22,7 @@ public class OctagonApp extends Application {
         habitatController.setHabitatModel(habitatModel);
         primaryStage.setWidth(1400);
         primaryStage.setHeight(900);
-        primaryStage.setTitle("FishApp");
+        primaryStage.setTitle("Octagon");
         primaryStage.show();
     }
 

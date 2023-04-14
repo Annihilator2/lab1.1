@@ -3,21 +3,111 @@
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.stage.*?>
 
-<Stage fx:id="mainStage" height="910.0" minHeight="910.0" minWidth="1600.0" width="1600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="OctagonApp.controller.OctagonController">
+<Stage fx:id="mainStage" height="910.0" minHeight="910.0" minWidth="1600.0" onCloseRequest="#handleCloseRequest" width="1600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="OctagonApp.controller.OctagonController">
     <scene>
         <Scene fx:id="mainScene" onKeyPressed="#setActionOnKey">
-            <SplitPane fx:id="rootPane" dividerPositions="0.15030060120240482" prefHeight="800" prefWidth="1000.0">
-            <items>
-               <Pane prefHeight="100.0" prefWidth="100.0">
-                  <children>
-                     <Label fx:id="statisticsLabel" layoutX="10.0" layoutY="223.0" prefHeight="140.0" prefWidth="127.0" text="StaticsLabel" />
-                     <Label fx:id="timeLabel" layoutX="14.0" layoutY="14.0" text="TimeLabel" />
-                  </children>
-               </Pane>
-               <Pane fx:id="imagePane" prefHeight="200.0" prefWidth="200.0" />
-            </items></SplitPane>
+            <SplitPane fx:id="rootPane" dividerPositions="0.3377808988764045" prefHeight="800" prefWidth="1000.0">
+                <items>
+                    <AnchorPane fx:id="settings" prefHeight="798.0" prefWidth="458.0">
+                        <children>
+                            <Separator layoutY="74.0" prefHeight="7.0" prefWidth="474.0" />
+                            <Label layoutX="-1.0" prefHeight="75.0" prefWidth="478.0" text="        Control panel" textAlignment="CENTER">
+                                <font>
+                                    <Font name="Arial Bold" size="46.0" />
+                                </font>
+                            </Label>
+                            <AnchorPane layoutY="78.0" prefHeight="256.0" prefWidth="462.0">
+                                <children>
+                                    <HBox alignment="CENTER" layoutX="3.0" layoutY="155.0" prefHeight="98.0" prefWidth="473.0">
+                                        <children>
+                                            <Button fx:id="startButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="110.0" text="Start" textFill="#02ed13" />
+                                            <Button fx:id="stopButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="110.0" text="Stop" textFill="#cf1515" />
+                                            <Button fx:id="objectsButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="110.0" text="Objects" textFill="#da37b7" />
+                                        </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER" layoutY="109.0" prefHeight="37.0" prefWidth="475.0">
+                                        <children>
+                                            <RadioButton mnemonicParsing="false" prefHeight="17.0" prefWidth="117.0" text="Show time" textFill="#1e59e1">
+                                                <toggleGroup>
+                                                    <ToggleGroup fx:id="timeRadioGroup" />
+                                                </toggleGroup>
+                                            </RadioButton>
+                                            <RadioButton mnemonicParsing="false" prefHeight="17.0" prefWidth="117.0" text="Hide time" textFill="#1e59e1" toggleGroup="$timeRadioGroup" />
+                                            <CheckBox fx:id="checkBox" mnemonicParsing="false" prefHeight="17.0" prefWidth="137.0" selected="true" text="Show info" textFill="#1e59e1" />
+                                        </children>
+                                    </HBox>
+                                    <Separator layoutX="1.0" layoutY="252.0" prefHeight="5.0" prefWidth="474.0" />
+                                    <HBox alignment="CENTER" layoutX="-1.0" layoutY="-3.0" prefHeight="63.0" prefWidth="476.0">
+                                        <children>
+                                            <Label alignment="CENTER_RIGHT" text="Hasbulla:" textAlignment="JUSTIFY" textFill="#1e59e1" />
+                                            <Label text=" Spawn chance(%) " />
+                                            <ComboBox fx:id="hasbullaBox" onAction="#setHasbullaSpawnChance" prefHeight="1.0" prefWidth="50.0" />
+                                            <Label text=" Spawn rate (s) " />
+                                            <Spinner fx:id="hasbullaSpawnSpinner" amountToStepBy="1" editable="true" initialValue="5" max="100" min="1" prefHeight="24.0" prefWidth="60.0" />
+                                            <Label text=" Life time (s) " />
+                                            <Spinner fx:id="hasbullaLifeSpinner" amountToStepBy="1" editable="true" initialValue="15" max="100" min="1" prefHeight="25.0" prefWidth="58.0" />
+                                        </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER" layoutY="51.0" prefHeight="46.0" prefWidth="478.0">
+                                        <children>
+                                            <Label alignment="CENTER" contentDisplay="CENTER" text="Abdurozik:" textFill="#1e59e1" />
+                                            <Label text="Spawn chance (%)" />
+                                            <ComboBox fx:id="abdurozikBox" onAction="#setAbdurozikSpawnChance" prefHeight="9.0" prefWidth="50.0" />
+                                            <Label text=" Spawn rate (s) " />
+                                            <Spinner fx:id="abdurozikSpawnSpinner" amountToStepBy="1" editable="true" initialValue="3" max="100" min="1" prefHeight="24.0" prefWidth="58.0" />
+                                            <Label text=" Life time (s) " />
+                                            <Spinner fx:id="abdurozikLifeSpinner" amountToStepBy="1" editable="true" initialValue="20" max="100" min="1" prefHeight="24.0" prefWidth="57.0" />
+                                        </children>
+                                    </HBox>
+                                </children>
+                            </AnchorPane>
+                            <Label contentDisplay="CENTER" layoutY="332.0" prefHeight="81.0" prefWidth="477.0" text="                            Information&#10;                           and&#10;                           statistics" textAlignment="CENTER" textFill="#1e59e1">
+                                <font>
+                                    <Font name="Arial" size="23.0" />
+                                </font>
+                            </Label>
+                            <Separator layoutY="417.0" prefHeight="3.0" prefWidth="474.0" />
+                            <Label fx:id="timeLabel" layoutX="14.0" layoutY="435.0" text="Simulation time:">
+                                <font>
+                                    <Font name="Arial" size="18.0" />
+                                </font>
+                            </Label>
+                            <Label fx:id="statisticsLabel" layoutX="14.0" layoutY="456.0" text="Info:">
+                                <font>
+                                    <Font name="Arial" size="18.0" />
+                                </font>
+                            </Label>
+                        </children>
+                    </AnchorPane>
+                    <AnchorPane prefHeight="798.0" prefWidth="485.0">
+                        <children>
+                            <MenuBar layoutY="2.0" prefHeight="25.0" prefWidth="940.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="2.0">
+                                <menus>
+                                    <Menu mnemonicParsing="false" text="File">
+                                        <items>
+                                            <MenuItem mnemonicParsing="false" text="Close" />
+                                        </items>
+                                    </Menu>
+                                    <Menu mnemonicParsing="false" text="Edit">
+                                        <items>
+                                            <MenuItem mnemonicParsing="false" text="Delete" />
+                                        </items>
+                                    </Menu>
+                                    <Menu mnemonicParsing="false" text="Help">
+                                        <items>
+                                            <MenuItem mnemonicParsing="false" text="About" />
+                                        </items>
+                                    </Menu>
+                                </menus>
+                            </MenuBar>
+                            <Pane fx:id="imagePane" layoutY="27.0" prefHeight="771.0" prefWidth="940.0" />
+                        </children>
+                    </AnchorPane>
+                </items>
+            </SplitPane>
         </Scene>
     </scene>
 </Stage>
